@@ -1,4 +1,3 @@
-/* global module */
 module.exports = {
     "env": {
         "browser": true,
@@ -6,53 +5,48 @@ module.exports = {
         "es6": true,
         "node": true
     },
+    "plugins": ["react"],
+    "parser": "babel-eslint",
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "sourceType": "module"
     },
-    "globals": {
-        "module": true,
-        "define": true,
-        "expect": true,
-        "it": true,
-        "describe": true,
-        "exports": true
-    },
-    "plugins": [
-        "react"
-    ],
     "rules": {
         "indent": [
             "error",
-            4
+            4,
+            {
+                "SwitchCase": 1
+            }
         ],
-        "strict": 0,
         "linebreak-style": [
             "error",
             "unix"
         ],
         "quotes": [
             "error",
-            "double"
+            "single"
         ],
-        "curly": "error",
-        "brace-style": ["error", "1tbs"],
         "semi": [
             "error",
             "always"
         ],
-        "max-len": ["error", 200, 4],
-        "one-var": ["off"],
-        "no-confusing-arrow": "off",
-        "react/jsx-no-bind": ["off"],
-        "react/jsx-indent": [2, 4],
-        "react/jsx-indent-props": [2, 4],
-        "react/jsx-boolean-value": ["off"]
+        "keyword-spacing": [
+            2,
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "react/jsx-uses-vars": 2
+    },
+    "globals": {
+        "wx": true,
+        "expect": true,
+        "describe": true,
+        "test": true
     }
 };
-
-

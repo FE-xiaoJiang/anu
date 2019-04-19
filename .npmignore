@@ -14,8 +14,11 @@ chromedriver
 react.js
 react-dom.js
 selenium-server-*
+packages/cli/__tests__/*
+packages/render/dom/__tests__/*
 /.vscode/*
 /.history/*
+yarn.lock
 xxx.js
 index.css
 stand.js

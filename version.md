@@ -1,17 +1,65 @@
-## 1.3.4(2018.05.13)
 
-1. 修复 img onLoad、onError 的一个小错误
-2. 修复服务端渲染时 JSX 带样式导致崩溃的问题
-3. 修复 Fragment 渲染顺序错误的问题
+# 变更日志
 
-## 1.3.3(2018.04.24)
+## 1.4.6(2018.07.27)
 
-1. 处理后渲渲染时,window的调试信息导致的BUG
-2. 修复移动浏览器下输入法导致的 change 事件问题
+1. 添加cacheContext, mergeContext等方法，如果上面的context不变，那么下方的也不会，这样就阻止了无效的cwrp钩子的触发
+2. miniCreateClass添加对微信小程序无法动态执行代码的处理
+3. createElement添加对input的处理，高级浏览器不会进行最下面的分支
 
-## 1.3.2(2018.04.08)
+## 1.4.5(2018.07.06)
 
-1. 修正IE8下创建`<input type="text" />`出错的BUG
+1. 调整依赖，不再添加webpack相关的模块
+2. 修复对react-hot-loader的支持
+3. 修复IE8的input onChange事件的光标问题
+4. 修复resetStack BUG
+5. 去掉diffProps中的数组解构，减少体积
+
+## 1.4.4(2018.06.22)
+
+1. 修复插入点的BUG，现在dfs遍历过程不再查询元素节点的insertPoint是否存在，updateHostComponent方法也不会调用getInsertPoint，性能大大提升
+2. 修复componentWillUnmount钩子中访问this.refs.xxx.parentNode,其父节点不存在的BUG
+
+## 1.4.3(2018.06.14)
+
+1. miniCreateClass在老式IE下取不到名字默认使用IEComponent, 
+2. 修复createClass没有继续mixin的BUG 
+3. 移除option元素下面所有元素节点
+4. 去掉NULLREF任务，添加DUPLEX任务，提前所有dom相关任务
+5. 内置的路由器支持IE8的hashchange
+6. updateContext改名updateContent，这是一直以来的笔误
+
+## 1.4.2(2018.06.07)
+
+1. add miniCreateClass, 并用它重构createClass, Unbatch, PureComponent, createContext
+2. 添加一个WORKING任务，避免整棵树更新
+3. 修复受控组件中option的IE8-的兼容BUG
+4. 添加一个内置的路由器
+
+## 1.4.1(2018.06.04)
+
+1. 文本节点的内容直接用fiber.props代替
+2. 修正input的拼音输入法BUG
+3. 修正updateHostComponent中覆盖children对象的BUG
+4. 修正createClass BUG
+5. 修正SSR的BUG
+6. 简化commitDFS循环
+
+## 1.4.0(2018.05.30)
+
+1. 测试全部改成jest
+2. cWU钩子在调用时必须移除
+3. 批量更新时，每个组件只能更新一次
+4. 重构受控组件，它们会延后在batchedUpdate中执行，跑通所有测试
+5. emptyElement不再递归移除，但会递归清空附于元素节点上的数据，以防内存泄露
+6. 将createClass移出核心库
+7. 重构错误边界，边界组件带有capturedValues，catchError, caughtError标识，并放进全局的boundaries
+8. 重构contextStack，保证setState后，从当前组件的unmaskedContext中还原之前的栈
+
+
+## 1.3.2(2018.04.16)
+
+处理移动端下中文输入法的onChange事件BUG
 
 ## 1.3.1(2018.03.18)
 
@@ -27,7 +75,7 @@
 2. 添加大量React.Fragment测试，修正一些边缘的BUG
 3. 升级diff机制，由新旧vnode进行比较，改成fiber与新vnode进行比较，用新vnode的数据更新fiber与视图
 4. 添加input[type=search]的onChange事件支持
-5. 修正传送门在antd3.0的一个边缘BUG（重复插入两次，导致文本节点消失）
+5. 修正传送门在antd3.0的一个边缘BUG（重复插入两次，导致文本节点消失）
 6. 属性名与方法名大改动，与React16的Fiber靠近
    * `vnode.vtype` --> fiber.tag
    * `instance.__isStateless` --> fiber._isStateless
